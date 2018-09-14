@@ -1,5 +1,5 @@
 
-from flask import Flask
+from flask import Flask, render_template, request
 from models import db
 
 app = Flask(__name__)
@@ -16,6 +16,16 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 
 db.init_app(app)
+
+@app.route('/showSignUp')
+def showSignUp():
+    return render_template('signup.html')
+
+@app.route('/signUp', methods=['POST'])
+def signUP():
+
+    _username = request.form['inputName']
+    _email = request.form['inputEmail']
 
 @app.route('/')
 def main():
