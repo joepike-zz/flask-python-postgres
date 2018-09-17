@@ -4,18 +4,18 @@ services:
   api:
     build: .
     ports:
-      - "5000:5000"
+      - "47441:47441"
     links:
       - postgres
     environment:
-      - POSTGRES_USER=joe
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=joe
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PW}
+      - POSTGRES_HOST=${PG_HOST}
+      - POSTGRES_DB=${PG_DB}
   postgres:
     image: postgres:10.4
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=joe
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PW}
