@@ -17,19 +17,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\%(pw)s@%(host)s:
 
 db.init_app(app)
 
-@app.route('/showSignUp')
-def showSignUp():
+@app.route('/', methods=['GET', 'POST'])
+def signup():
     return render_template('signup.html')
 
-@app.route('/signUp', methods=['POST'])
-def signUP():
-
-    _username = request.form['inputName']
-    _email = request.form['inputEmail']
-
-@app.route('/')
-def main():
-    return "Hello, World!"
+@app.route('/hello', methods=['GET', 'POST'])
+def hello():
+    return render_template('greeting.html', username=request.form['username'], email=request.form['email'])
 
 if __name__ == '__main__':
     app.run()
